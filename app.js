@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const port = process.env.PORT || 8000;
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("Public"));
@@ -127,12 +128,6 @@ app.get("/:customListName", (req, res) => {
   });
 });
 
-
-let port = process.env.PORT;
-if(port == null || port == ""){
-  port = 3000;
-}
-
-app.listen(port);
-
-
+app.listen(port, () => {
+  console.log(`listening on the port no at ${port}`);
+});
